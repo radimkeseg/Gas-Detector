@@ -60,6 +60,9 @@ void MyThingSpeak::setup(unsigned long channelNumber, const char *writeAPIKey, u
    this->update_interval = update_interval;
 }
 
+void MyThingSpeak::write(float lpg, float co, float smoke){
+  write(lpg, co, smoke, false);
+}
 
 void MyThingSpeak::write(float lpg, float co, float smoke, bool force=false){
 

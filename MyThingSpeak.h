@@ -49,6 +49,7 @@ public:
    }
 
    void setup(unsigned long channelNumber, const char *writeAPIKey, unsigned int field_lpg, unsigned int field_co, unsigned int field_smoke, unsigned int update_interval);
-   void write(float lpg, float co, float smoke, bool force=false);
+   void write(float lpg, float co, float smoke);
+   void write(float lpg, float co, float smoke, bool force);
 };
 
