@@ -71,7 +71,7 @@ float* MQ2::read(bool print){
 }
 
 float MQ2::readLPG(){
-    if (millis()<(lastReadTime + 10000) && lpg != 0){
+    if (millis()<(lastReadTime + 10000) /*&& lpg != 0*/){
         return lpg;
     }else{
         return lpg = MQGetGasPercentage(MQRead()/10,GAS_LPG);
@@ -79,7 +79,7 @@ float MQ2::readLPG(){
 }
 
 float MQ2::readCO(){
-    if (millis()<(lastReadTime + 10000) && co != 0){
+    if (millis()<(lastReadTime + 10000) /*&& co != 0*/){
         return co;
     }else{
         return co = MQGetGasPercentage(MQRead()/10,GAS_CO);
@@ -87,7 +87,7 @@ float MQ2::readCO(){
 }
 
 float MQ2::readSmoke(){
-    if (millis()<(lastReadTime + 10000) && smoke != 0){
+    if (millis()<(lastReadTime + 10000) /*&& smoke != 0*/){
         return smoke;
     }else{
         return smoke = MQGetGasPercentage(MQRead()/10,GAS_SMOKE);

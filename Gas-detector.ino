@@ -44,20 +44,24 @@ TimeClient timeClient(1);
 Interval measurementUpdate;
 long update_interval = 10*1000; //internal update default 5 s
 
-int lpg, co, smoke;
-bool blink;
+float lpg = 0, co = 0, smoke = 0;
+bool blink = false;
 
 /* webserver handlers */
 static String handle_data(){
   String res;
   res = "{\"lpg\":\"";
-  res += lpg = mq2.readLPG();
+  res += lpg;// = mq2.readLPG();
   res += "\",\"co\":\"";
-  res += co = mq2.readCO();
+  res += co;// = mq2.readCO();
   res += "\",\"smoke\":\"";
-  res += smoke = mq2.readSmoke();
+  res += smoke;// = mq2.readSmoke();
   res += "\"}";
   return res;
+}
+
+static void outputMaesurements(){
+  Serial.println(handle_data());
 }
  
 void setup() {
@@ -109,7 +113,8 @@ void loop() {
   * 2 = CO in ppm
   * 3 = SMOKE in ppm
   */
-  float* values= mq2.read(true); //set it false if you don't want to print the values in the Serial
+//  Serial.println("read sensors");
+  float* values = mq2.read(true); //set it false if you don't want to print the values in the Serial
   
   //lpg = values[0];
   lpg = mq2.readLPG();
@@ -117,6 +122,9 @@ void loop() {
   co = mq2.readCO();
   //smoke = values[2];
   smoke = mq2.readSmoke(); 
+
+//  Serial.println("stored values");
+  outputMaesurements();
 
 /**
  * LPG
@@ -130,6 +138,7 @@ void loop() {
  * 
  */  
   if(lpg>70 || co>70 || smoke>1000){
+    
     gauge3LED.setValue(blink ? Gauge3LED::RED : Gauge3LED::NONE );
     mq2.setAlarm(blink);
     buzzer.play(blink ? NOTE_C3 : NOTE_F3 );

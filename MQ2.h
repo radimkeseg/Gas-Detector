@@ -53,7 +53,7 @@ private:
 	float SmokeCurve[3] = {2.3,0.53,-0.44};                                                       
 	float Ro = 10;             
  
-   int GAS_LPG = 0;
+  int GAS_LPG = 0;
 	int GAS_CO = 1;
 	int GAS_SMOKE = 2;
 
