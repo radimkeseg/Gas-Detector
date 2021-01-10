@@ -359,9 +359,9 @@ function refresh() {
         {
           var data = JSON.parse(xmlHttp.responseText);
 
-          lpgGauge.setVal(data.lpg).setColor(getLpgColor(data.temp));
-          coGauge.setVal(data.co).setColor(getCoColor(data.mois));
-          smokeGauge.setVal(data.smoke).setColor(getSmokeColor(data.mois));
+          lpgGauge.setVal(data.lpg).setColor(getLpgColor(data.lpg));
+          coGauge.setVal(data.co).setColor(getCoColor(data.co));
+          smokeGauge.setVal(data.smoke).setColor(getSmokeColor(data.smoke));
         } else {
           console.log('Refresh failed: ' + xmlHttp.status);
         }
